@@ -5,7 +5,7 @@
   <artifactId>pluginsib-documentcustody-arxiudigitalcaib</artifactId>
   <version>4.0.0</version>
   <packaging>jar</packaging>
-  <name>FundacioBit Plugins - Document Custody - ArxiuDigitalCAIB</name>
+  <name>PluginsIB - Document Custody - ArxiuDigitalCAIB</name>
   <parent>
     <groupId>org.fundaciobit.pluginsib.documentcustody</groupId>
     <artifactId>pluginsib-documentcustody</artifactId>
