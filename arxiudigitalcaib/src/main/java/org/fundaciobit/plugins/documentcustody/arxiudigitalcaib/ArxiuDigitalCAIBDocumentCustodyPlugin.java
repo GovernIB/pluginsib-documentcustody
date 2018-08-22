@@ -22,12 +22,12 @@ import org.fundaciobit.plugins.documentcustody.api.DocumentCustody;
 import org.fundaciobit.plugins.documentcustody.api.IDocumentCustodyPlugin;
 import org.fundaciobit.plugins.documentcustody.api.NotSupportedCustodyException;
 import org.fundaciobit.plugins.documentcustody.api.SignatureCustody;
-import org.fundaciobit.plugins.utils.AbstractPluginProperties;
-import org.fundaciobit.plugins.utils.Base64;
-import org.fundaciobit.plugins.utils.Metadata;
-import org.fundaciobit.plugins.utils.MetadataConstants;
-import org.fundaciobit.plugins.utils.MetadataFormatException;
-import org.fundaciobit.plugins.utils.XTrustProvider;
+import org.fundaciobit.pluginsib.core.utils.AbstractPluginProperties;
+import org.fundaciobit.pluginsib.core.utils.Base64;
+import org.fundaciobit.pluginsib.core.utils.Metadata;
+import org.fundaciobit.pluginsib.core.utils.MetadataConstants;
+import org.fundaciobit.pluginsib.core.utils.MetadataFormatException;
+import org.fundaciobit.pluginsib.core.utils.XTrustProvider;
 
 import es.caib.arxiudigital.apirest.ApiArchivoDigital;
 import es.caib.arxiudigital.apirest.CSGD.entidades.resultados.CreateDraftDocumentResult;

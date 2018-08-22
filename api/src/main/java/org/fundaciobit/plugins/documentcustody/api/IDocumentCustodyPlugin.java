@@ -3,9 +3,9 @@ package org.fundaciobit.plugins.documentcustody.api;
 import java.util.List;
 import java.util.Map;
 
-import org.fundaciobit.plugins.IPlugin;
-import org.fundaciobit.plugins.utils.Metadata;
-import org.fundaciobit.plugins.utils.MetadataFormatException;
+import org.fundaciobit.pluginsib.core.IPlugin;
+import org.fundaciobit.pluginsib.core.utils.Metadata;
+import org.fundaciobit.pluginsib.core.utils.MetadataFormatException;
 
 /**
  * 

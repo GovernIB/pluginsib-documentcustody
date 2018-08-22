@@ -20,7 +20,7 @@ import org.fundaciobit.plugins.documentcustody.api.IDocumentCustodyPlugin;
 import org.fundaciobit.plugins.documentcustody.api.test.InfoExecutionTest;
 import org.fundaciobit.plugins.documentcustody.api.test.Registre;
 import org.fundaciobit.plugins.documentcustody.api.test.TestDocumentCustody;
-import org.fundaciobit.plugins.utils.PluginsManager;
+import org.fundaciobit.pluginsib.core.utils.PluginsManager;
 
 /**
  *

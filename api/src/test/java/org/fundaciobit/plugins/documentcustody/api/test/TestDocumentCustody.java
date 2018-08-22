@@ -14,9 +14,9 @@ import org.fundaciobit.plugins.documentcustody.api.DocumentCustody;
 import org.fundaciobit.plugins.documentcustody.api.IDocumentCustodyPlugin;
 import org.fundaciobit.plugins.documentcustody.api.NotSupportedCustodyException;
 import org.fundaciobit.plugins.documentcustody.api.SignatureCustody;
-import org.fundaciobit.plugins.utils.Metadata;
-import org.fundaciobit.plugins.utils.MetadataFormatException;
-import org.fundaciobit.plugins.utils.MetadataType;
+import org.fundaciobit.pluginsib.core.utils.Metadata;
+import org.fundaciobit.pluginsib.core.utils.MetadataFormatException;
+import org.fundaciobit.pluginsib.core.utils.MetadataType;
 import org.junit.Assert;
 
 /**

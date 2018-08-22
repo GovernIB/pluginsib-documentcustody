@@ -35,10 +35,10 @@ import org.fundaciobit.plugins.documentcustody.arxiudigitalcaib.test.beans.Regis
 import org.fundaciobit.plugins.documentcustody.arxiudigitalcaib.test.beans.TipoDocumental;
 import org.fundaciobit.plugins.documentcustody.arxiudigitalcaib.test.beans.Usuario;
 import org.fundaciobit.plugins.documentcustody.arxiudigitalcaib.test.beans.UsuarioEntidad;
-import org.fundaciobit.plugins.utils.FileUtils;
-import org.fundaciobit.plugins.utils.Metadata;
-import org.fundaciobit.plugins.utils.MetadataConstants;
-import org.fundaciobit.plugins.utils.PluginsManager;
+import org.fundaciobit.pluginsib.core.utils.FileUtils;
+import org.fundaciobit.pluginsib.core.utils.Metadata;
+import org.fundaciobit.pluginsib.core.utils.MetadataConstants;
+import org.fundaciobit.pluginsib.core.utils.PluginsManager;
 
 import es.caib.arxiudigital.apirest.ApiArchivoDigital;
 import es.caib.arxiudigital.apirest.constantes.Aspectos;

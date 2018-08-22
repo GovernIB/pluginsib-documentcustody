@@ -16,8 +16,8 @@ import org.fundaciobit.plugins.documentcustody.api.AnnexCustody;
 import org.fundaciobit.plugins.documentcustody.api.CustodyException;
 import org.fundaciobit.plugins.documentcustody.api.IDocumentCustodyPlugin;
 import org.fundaciobit.plugins.documentcustody.api.test.TestDocumentCustody;
-import org.fundaciobit.plugins.utils.FileUtils;
-import org.fundaciobit.plugins.utils.PluginsManager;
+import org.fundaciobit.pluginsib.core.utils.FileUtils;
+import org.fundaciobit.pluginsib.core.utils.PluginsManager;
 
 /**
  * 

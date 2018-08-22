@@ -24,9 +24,9 @@ import org.fundaciobit.plugins.documentcustody.api.NotSupportedCustodyException;
 import org.fundaciobit.plugins.documentcustody.api.SignatureCustody;
 import org.fundaciobit.plugins.documentcustody.alfresco.cmis.OpenCmisAlfrescoHelper;
 import org.fundaciobit.plugins.documentcustody.alfresco.util.AlfrescoUtils;
-import org.fundaciobit.plugins.utils.Metadata;
-import org.fundaciobit.plugins.utils.MetadataFormatException;
-import org.fundaciobit.plugins.utils.MetadataType;
+import org.fundaciobit.pluginsib.core.utils.Metadata;
+import org.fundaciobit.pluginsib.core.utils.MetadataFormatException;
+import org.fundaciobit.pluginsib.core.utils.MetadataType;
 
 /**
  * Implementació del plugin de custodia documental que guarda dins Alfresco.

@@ -19,10 +19,10 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.fundaciobit.plugins.utils.AbstractPluginProperties;
-import org.fundaciobit.plugins.utils.Base64;
-import org.fundaciobit.plugins.utils.Metadata;
-import org.fundaciobit.plugins.utils.MetadataFormatException;
+import org.fundaciobit.pluginsib.core.utils.AbstractPluginProperties;
+import org.fundaciobit.pluginsib.core.utils.Base64;
+import org.fundaciobit.pluginsib.core.utils.Metadata;
+import org.fundaciobit.pluginsib.core.utils.MetadataFormatException;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

@@ -9,7 +9,7 @@ import java.util.Properties;
 
 import org.fundaciobit.plugins.documentcustody.api.DocumentCustody;
 import org.fundaciobit.plugins.documentcustody.api.IDocumentCustodyPlugin;
-import org.fundaciobit.plugins.utils.PluginsManager;
+import org.fundaciobit.pluginsib.core.utils.PluginsManager;
 
 /**
  * @author Limit
