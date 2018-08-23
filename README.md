@@ -2,10 +2,9 @@
 
 **Descripció**
 
+Custòdia de Documents de sistema de fitxers, alfresco, Custòdia CAIB i Arxiu Digital CAIB.
 
-Repositori que conté generadors de Segell de Temps.
-
-La versió actual d'aquest plugin és la [pluginsib-timestamp-2.0](https://github.com/GovernIB/pluginsib-timestamp/tree/pluginsib-timestamp-2.0)
+La versió actual d'aquest plugin és la [pluginsib-documentcustody-2.0](https://github.com/GovernIB/pluginsib-documentcustody/tree/pluginsib-documentcustody-2.0).
 
 
 **Implementacions**
