@@ -2,7 +2,7 @@
 
 **Descripció**
 
-Custòdia de Documents de sistema de fitxers, alfresco, Custòdia CAIB i Arxiu Digital CAIB.
+Custòdia de Documents de sistema de fitxers, alfresco (i versió especial per l'APB) i Arxiu Digital CAIB.
 
 La versió actual d'aquest plugin és la [pluginsib-documentcustody-2.0](https://github.com/GovernIB/pluginsib-documentcustody/tree/pluginsib-documentcustody-2.0).
 
@@ -14,7 +14,6 @@ Directori | Nom | Descripció
 alfresco | -- | -- 
 alfresco-registre-apb | -- | --
 arxiudigital | -- | --
-doc | -- | --
 filesystem | -- | --
 
 **Enllaços**
