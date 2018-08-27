@@ -5,7 +5,7 @@
   <artifactId>pluginsib-documentcustody</artifactId>
   <version>4.0.0</version>
   <packaging>pom</packaging>
-  <name>PluginsIB - Document Custody Plugins</name>
+  <name>PluginsIB - Document Custody</name>
   <modules>
     <module>api</module>
     <module>filesystem</module>
