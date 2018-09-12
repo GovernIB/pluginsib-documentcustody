@@ -1,0 +1,25 @@
+/alfresco/target
+/alfresco-registre-apb/target
+/api/.gitignore
+/api/.project
+/api/.settings
+/api/.classpath
+/arxiudigitalcaib/sample.xml
+/arxiudigitalcaib/test.log
+/arxiudigitalcaib/.settings
+/arxiudigitalcaib/.classpath
+/arxiudigitalcaib/.gitignore
+/arxiudigitalcaib/.project
+/arxiudigitalcaib/2018_01_22_XAdES_Detached_sample_xml.xml
+/arxiudigitalcaib/CAIB-IMGD Tests Capa de Servicios CSGD-SGD v01r01.xml
+/arxiudigitalcaib/compil.bat
+/arxiudigitalcaib/connection.txt
+/arxiudigitalcaib/expedient.txt
+/arxiudigitalcaib/foto_xades_attached.xml
+/arxiudigitalcaib/justificant.pdf
+/arxiudigitalcaib/plugin.properties
+/arxiudigitalcaib/rest.txt
+/filesystem/.settings
+/filesystem/.classpath
+/filesystem/.gitignore
+/filesystem/.project
