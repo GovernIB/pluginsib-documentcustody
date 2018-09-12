@@ -119,6 +119,9 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
 
     TIPOFIRMA_COMPLEXE.put(SignatureCustody.XADES_SIGNATURE + "_true",
         TiposFirma.XADES_ENVELOPED);
+    
+    TIPOFIRMA_COMPLEXE.put(SignatureCustody.XADES_SIGNATURE + "_false",
+        TiposFirma.XADES_INTERNALLY);
 
     FORMATS_BY_EXTENSION.put("wfs", FormatosFichero.WFS);
     FORMATS_BY_EXTENSION.put("wms", FormatosFichero.WMS);
@@ -2102,10 +2105,12 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
 
         FormatosFichero format = FORMATS_BY_EXTENSION.get(extensio);
 
-        if (format != null) {
-          if(debug) {
-            log.info("getMetadadesPerDocument()::ENI_NOMBRE_FORMATO = ]" + format + "[");
-          }
+        if(debug) {
+          log.info("getMetadadesPerDocument()::ENI_NOMBRE_FORMATO = ]" + format + "[");
+        }
+        if (format == null) {
+          llistaMetadades.put(MetadataConstants.ENI_NOMBRE_FORMATO, extensio.toUpperCase());
+        } else {
           llistaMetadades.put(MetadataConstants.ENI_NOMBRE_FORMATO, format);
         }
 
@@ -2118,7 +2123,9 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
         tipo = TIPOFIRMA_COMPLEXE.get(tipusFirma + "_"
             + signatureCustody.getAttachedDocument());
       }
-      if (tipo != null) {
+      if (tipo == null) {
+        log.warn("TIPO FIRMA CALCULAT val null (Tipus ENVIAT " + tipusFirma + ")");
+      } else {
         if(debug) {
           log.info("getMetadadesPerDocument()::ENI_TIPO_FIRMA = ]" + tipo.getValue() + "[");
         }
