@@ -40,6 +40,35 @@ public interface IDocumentCustodyPlugin extends IPlugin {
   */
  String getValidationUrl(String custodyID, Map<String, Object> parameters) throws CustodyException;
  
+ 
+ /**
+  * 
+  * @param custodyID
+  * @param parameters
+  * @return
+  * @throws CustodyException
+  */
+ String getCsv(String custodyID, Map<String, Object> parameters) throws CustodyException;
+ 
+ /**
+  * 
+  * @param custodyID
+  * @param parameters
+  * @return
+  * @throws CustodyException
+  */
+ String getCsvValidationWeb(String custodyID, Map<String, Object> parameters) throws CustodyException;
+ 
+ /**
+  * 
+  * @param custodyID
+  * @param parameters
+  * @return
+  * @throws CustodyException
+  */
+ String getCsvGenerationDefinition(String custodyID, Map<String, Object> parameters) throws CustodyException;
+ 
+ 
  /**
   * Retorna un valor a partir de l'identificador de reserva que es pot
   * substituir quan calgui. Per defecte retornar custodyID 

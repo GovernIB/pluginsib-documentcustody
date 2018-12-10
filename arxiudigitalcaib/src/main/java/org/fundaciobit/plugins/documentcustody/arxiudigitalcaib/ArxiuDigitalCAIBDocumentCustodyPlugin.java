@@ -622,6 +622,48 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     }
 
   }
+  
+  
+  @Override
+  public String getCsv(String custodyID, Map<String, Object> custodyParameters)
+      throws CustodyException {
+
+    try {
+      Map<String, List<Metadata>> metas = internalGetAllMetadatas(custodyID, custodyParameters);
+
+      List<Metadata> list = metas.get(MetadataConstants.ENI_CSV);
+
+      return list.get(0).getValue();
+
+    } catch (CustodyException ce) {
+      throw ce;
+    } catch (Exception e) {
+      throw new CustodyException("Error intentant obtenir el CSV de la custòdia amb id "
+          + custodyID + ": " + e.getMessage(), e);
+    }
+
+  }
+  
+  
+  @Override
+  public String getCsvValidationWeb(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+
+    String csvValidatioWebEL = getProperty(getPropertyBase() + AbstractDocumentCustodyPlugin.ABSTRACT_CSV_VALIDATION_WEB);
+
+    return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvValidatioWebEL, parameters);
+  }
+
+  @Override
+  public String getCsvGenerationDefinition(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+
+    String csvGenerationDefinitionEL = getProperty(getPropertyBase()
+        + AbstractDocumentCustodyPlugin.ABSTRACT_CSV_GENERATION_DEFINITION);
+    return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvGenerationDefinitionEL, parameters);
+  }
+  
+  
 
   @Override
   public String getValidationUrl(String custodyID, Map<String, Object> custodyParameters)
@@ -639,11 +681,12 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     Map<String, Object> custodyParametersExtended = new HashMap<String, Object>();
 
     // Recuperam el CSV
-    custodyParametersExtended.put("csv", getCSV(custodyID, custodyParameters));
+    custodyParametersExtended.put("csv", getCsv(custodyID, custodyParameters));
     custodyParametersExtended.putAll(custodyParameters);
 
     return AbstractDocumentCustodyPlugin.getValidationUrlStatic(custodyID,
-        custodyParametersExtended, baseUrl, baseUrlEL, hashAlgorithm, hashPassword, log);
+        custodyParametersExtended, baseUrl, baseUrlEL,
+        hashAlgorithm, hashPassword, "validationUrl_", log);
   }
 
   @Override
@@ -657,7 +700,7 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
       Map<String, Object> custodyParametersExtended = new HashMap<String, Object>();
 
       // Recuperam el CSV
-      custodyParametersExtended.put("csv", getCSV(custodyID, custodyParameters));
+      custodyParametersExtended.put("csv", getCsv(custodyID, custodyParameters));
       custodyParametersExtended.putAll(custodyParameters);
 
       return AbstractDocumentCustodyPlugin.processExpressionLanguage(specialValue,
@@ -2485,25 +2528,7 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
   }
 
   
-  
-  protected String getCSV(String custodyID, Map<String, Object> custodyParameters)
-      throws CustodyException {
 
-    try {
-      Map<String, List<Metadata>> metas = internalGetAllMetadatas(custodyID, custodyParameters);
-
-      List<Metadata> list = metas.get(MetadataConstants.ENI_CSV);
-
-      return list.get(0).getValue();
-
-    } catch (CustodyException ce) {
-      throw ce;
-    } catch (Exception e) {
-      throw new CustodyException("Error intentant obtenir el CSV de la custòdia amb id "
-          + custodyID + ": " + e.getMessage(), e);
-    }
-
-  }
 
   /*
    * protected Properties getPropertiesFromCAIBDocument_All(ApiArchivoDigital

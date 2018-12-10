@@ -5,7 +5,7 @@ Algunes dependències d'aquest Plugin interfereixen amb WS, per això s'han d'excl
         <dependency>
             <groupId>org.fundaciobit.plugins</groupId>
             <artifactId>plugin-documentcustody-alfresco</artifactId>
-            <version>2.0.0</version>
+            <version>4.0.0</version>
             <exclusions>
               <exclusion>
                 <groupId>org.slf4j</groupId>

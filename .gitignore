@@ -23,3 +23,12 @@
 /filesystem/.classpath
 /filesystem/.gitignore
 /filesystem/.project
+/alfresco/.classpath
+/alfresco/.project
+/alfresco/.settings
+/alfresco-registre-apb/.classpath
+/alfresco-registre-apb/.project
+/alfresco-registre-apb/.settings/org.eclipse.core.resources.prefs
+/alfresco-registre-apb/.settings/org.eclipse.jdt.core.prefs
+/alfresco-registre-apb/.settings/org.eclipse.m2e.core.prefs
+/arxiudigitalcaib/src/test/java/org/fundaciobit/plugins/documentcustody/arxiudigitalcaib/test/BorrarTests.java

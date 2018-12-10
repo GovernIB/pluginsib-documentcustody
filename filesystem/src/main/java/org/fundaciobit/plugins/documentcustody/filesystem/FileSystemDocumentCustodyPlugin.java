@@ -4,9 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Map;
 import java.util.Properties;
 
 import org.fundaciobit.plugins.documentcustody.api.AbstractDocumentCustodyPlugin;
+import org.fundaciobit.plugins.documentcustody.api.CustodyException;
 
 
 /**
@@ -143,5 +145,8 @@ public class FileSystemDocumentCustodyPlugin extends AbstractDocumentCustodyPlug
     }
     return file.length();
   }
+
+
+
 
 }
