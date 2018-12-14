@@ -431,6 +431,10 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
 
     String csvEL = getProperty(getPropertyBase() + ABSTRACT_CSV);
     
+    if (csvEL == null || csvEL.trim().length() == 0) {
+      return null;
+    }
+    
     String hashPassword = getProperty(getPropertyBase() + ABSTRACT_HASH_PASSWORD, "");
 
     // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
@@ -446,6 +450,9 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
       throws CustodyException {
 
     String csvValidatioWebEL = getProperty(getPropertyBase() + ABSTRACT_CSV_VALIDATION_WEB);
+    if (csvValidatioWebEL == null || csvValidatioWebEL.trim().length() == 0) {
+      return null;
+    }
 
     return processExpressionLanguage(csvValidatioWebEL, parameters);
   }
@@ -456,6 +463,11 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
 
     String csvGenerationDefinitionEL = getProperty(getPropertyBase()
         + ABSTRACT_CSV_GENERATION_DEFINITION);
+    
+    if (csvGenerationDefinitionEL == null || csvGenerationDefinitionEL.trim().length() == 0) {
+      return null;
+    }
+    
     return processExpressionLanguage(csvGenerationDefinitionEL, parameters);
   }
   
