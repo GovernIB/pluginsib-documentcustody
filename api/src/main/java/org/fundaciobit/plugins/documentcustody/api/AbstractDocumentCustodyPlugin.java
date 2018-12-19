@@ -50,6 +50,10 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
   public static final String ABSTRACT_BASE_URL = "baseurl";
 
   public static final String ABSTRACT_BASE_URL_EXPRESSION_LANGUAGE = "baseurl_expressionlanguage";
+  
+  public static final String ABSTRACT_PRINTABLE_FILE_URL_EXPRESSION_LANGUAGE ="printable_file_url_expressionlanguage";
+  
+  public static final String ABSTRACT_ENI_FILE_URL_EXPRESSION_LANGUAGE ="eni_file_url_expressionlanguage";
 
   public static final String ABSTRACT_CSV_VALIDATION_WEB = "csv_validation_web_expressionlanguage";
 
@@ -409,7 +413,7 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
    * Hash(custodyID)
    */
   @Override
-  public String getValidationUrl(String custodyID, Map<String, Object> parameters)
+  public String getOriginalFileUrl(String custodyID, Map<String, Object> parameters)
       throws CustodyException {
 
     String baseUrl = getURLBase();
@@ -424,6 +428,57 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
         hashPassword, "validationUrl_", log);
 
   }
+  
+
+  
+  /**
+   * Retorna una versió imprimible del document
+   * 
+   * Valors de substitució: // {0} => custodyID // {1} => URLEncode(custodyID) // {2} =>
+   * Hash(custodyID)
+   */
+  @Override
+  public String getPrintableFileUrl(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+
+    
+    String baseUrlEL = getProperty(getPropertyBase() + ABSTRACT_PRINTABLE_FILE_URL_EXPRESSION_LANGUAGE);
+
+    String hashPassword = getProperty(getPropertyBase() + ABSTRACT_HASH_PASSWORD, "");
+
+    // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
+    String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
+
+    return getValidationUrlStatic(custodyID, parameters, null, baseUrlEL, hashAlgorithm,
+        hashPassword, log);
+
+  }
+  
+
+
+  /**
+   * Retorna una versió ENI del document
+   * 
+   * Valors de substitució: // {0} => custodyID // {1} => URLEncode(custodyID) // {2} =>
+   * Hash(custodyID)
+   */
+  @Override
+  public String getEniFileUrl(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+
+    
+    String baseUrlEL = getProperty(getPropertyBase() + ABSTRACT_ENI_FILE_URL_EXPRESSION_LANGUAGE);
+
+    String hashPassword = getProperty(getPropertyBase() + ABSTRACT_HASH_PASSWORD, "");
+
+    // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
+    String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
+
+    return getValidationUrlStatic(custodyID, parameters, null, baseUrlEL, hashAlgorithm,
+        hashPassword, log);
+
+  }
+  
 
   @Override
   public String getCsv(String custodyID, Map<String, Object> parameters)

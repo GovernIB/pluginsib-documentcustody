@@ -95,9 +95,27 @@ es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.hash.password=mypass
 #  MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
 es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.hash.algorithm=MD5
 
+# Retorna una URL que apunta a la versió original del document
 # Opcional. Servei Millorat per generar la URL de Custodia emprant EL.
-# Variables addicionals: csv, validationUrl_custodyID, validationUrl_custodyID_URLEncode i validationUrl_custodyID_Hash   
-# es.caib.portafib.plugins.documentcustody.arxiudigitalcaib.baseurl_EL=http://regweb3.fundaciobit.org/custody/${registro.url}
+# Variables addicionals: csv, validationUrl_custodyID, validationUrl_custodyID_URLEncode i validationUrl_custodyID_Hash    
+# es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.baseurl_EL=http://regweb3.fundaciobit.org/custody/${registro.url}
+
+# Opcional.Retorna una URL que apunta a la versió imprimible del document
+# Valors de substitució:  
+# ${custodyID} => custodyID | ${custodyID_URLEncode} => URLEncode(custodyID) | ${custodyID_Hash} => Hash(custodyID) | ${csv} => CSV
+#es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.printable_file_url_EL=http://portafib.fundaciobit.org/custody/printable/${registre.url}
+
+# Opcional.Retorna una URL que apunta a la versió ENI del document
+# Valors de substitució:  
+# ${custodyID} => custodyID | ${custodyID_URLEncode} => URLEncode(custodyID) | ${custodyID_Hash} => Hash(custodyID) | ${csv} => CSV
+#es.caib.portafib.plugins.documentcustody.arxiudigitalcaib.eni_file_url_EL=http://portafib.fundaciobit.org/custody/eni/${registre.url}
+
+
+# Opcional. Web on es pot validar el CSV
+#es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.csv_validation_web_EL=http://portafib.fundaciobit.org/custody/index.html
+
+# Opcional. URL al document on s'explica com s'ha generat el CSV. Si no es defineix retornarà null. 
+# es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.csv_generation_definition=http://portafib.fundaciobit.org/custody/csv_generation.pdf
 
 # Opcional. Si no definit retorna el custodyID
 # Variables addicionals: csv

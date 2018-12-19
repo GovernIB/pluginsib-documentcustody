@@ -643,13 +643,13 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     }
 
   }
-  
+
   
   @Override
   public String getCsvValidationWeb(String custodyID, Map<String, Object> parameters)
       throws CustodyException {
 
-    String csvValidatioWebEL = getProperty(getPropertyBase() + AbstractDocumentCustodyPlugin.ABSTRACT_CSV_VALIDATION_WEB);
+    String csvValidatioWebEL = getProperty(getPropertyBase() + "csv_validation_web_EL");
 
     return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvValidatioWebEL, parameters);
   }
@@ -659,17 +659,35 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
       throws CustodyException {
 
     String csvGenerationDefinitionEL = getProperty(getPropertyBase()
-        + AbstractDocumentCustodyPlugin.ABSTRACT_CSV_GENERATION_DEFINITION);
+        + "csv_generation_definition");
     return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvGenerationDefinitionEL, parameters);
   }
   
   
 
+
+  /**
+   * Si existeix el document de Signatura llavors el retornam, ja que és el que es necessita
+   * per validar el document. En cas contrari o no té firmes o el propi document ja duu adjunta
+   * la firma, per lo que retornam el document.
+   * 
+   * Valors de substitució: // {0} => custodyID // {1} => URLEncode(custodyID) // {2} =>
+   * Hash(custodyID)
+   */
   @Override
-  public String getValidationUrl(String custodyID, Map<String, Object> custodyParameters)
+  public String getOriginalFileUrl(String custodyID, Map<String, Object> parameters)
       throws CustodyException {
+
+    final String property = "baseurl_EL";
+    final String prefix = "validationUrl_";
+    
+    return getValidationUrlCommon(custodyID, parameters, property, prefix);
+  }
+
+  protected String getValidationUrlCommon(String custodyID, Map<String, Object> parameters,
+      final String property, final String prefix) throws CustodyException {
     final String baseUrl = null;
-    String baseUrlEL = getProperty(getPropertyBase() + "baseurl_EL");
+    String baseUrlEL = getProperty(getPropertyBase() + property);
 
     String hashPassword = getProperty(getPropertyBase()
         + AbstractDocumentCustodyPlugin.ABSTRACT_HASH_PASSWORD, "");
@@ -681,13 +699,34 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     Map<String, Object> custodyParametersExtended = new HashMap<String, Object>();
 
     // Recuperam el CSV
-    custodyParametersExtended.put("csv", getCsv(custodyID, custodyParameters));
-    custodyParametersExtended.putAll(custodyParameters);
+    custodyParametersExtended.put("csv", getCsv(custodyID, parameters));
+    custodyParametersExtended.putAll(parameters);
 
     return AbstractDocumentCustodyPlugin.getValidationUrlStatic(custodyID,
         custodyParametersExtended, baseUrl, baseUrlEL,
-        hashAlgorithm, hashPassword, "validationUrl_", log);
+        hashAlgorithm, hashPassword, prefix , log);
   }
+  
+  
+
+  @Override
+  public String getPrintableFileUrl(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+    final String property = "printable_file_url_EL";
+    final String prefix = "";
+    
+    return getValidationUrlCommon(custodyID, parameters, property, prefix);
+  }
+
+  @Override
+  public String getEniFileUrl(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+    final String property = "eni_file_url_EL";
+    final String prefix = "";
+    
+    return getValidationUrlCommon(custodyID, parameters, property, prefix);
+  }
+  
 
   @Override
   public String getSpecialValue(String custodyID, Map<String, Object> custodyParameters)
@@ -2654,6 +2693,7 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     }
 
   }
+
 
   /**
    * 
