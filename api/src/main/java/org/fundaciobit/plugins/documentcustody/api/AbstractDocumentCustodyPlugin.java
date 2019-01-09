@@ -54,6 +54,8 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
   public static final String ABSTRACT_PRINTABLE_FILE_URL_EXPRESSION_LANGUAGE ="printable_file_url_expressionlanguage";
   
   public static final String ABSTRACT_ENI_FILE_URL_EXPRESSION_LANGUAGE ="eni_file_url_expressionlanguage";
+  
+  public static final String ABSTRACT_VALIDATION_FILE_URL_EXPRESSION_LANGUAGE = "validation_file_url_expressionlanguage";
 
   public static final String ABSTRACT_CSV_VALIDATION_WEB = "csv_validation_web_expressionlanguage";
 
@@ -478,6 +480,29 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
         hashPassword, log);
 
   }
+  
+  
+  /**
+   * Retorna una plana web de validacio del document
+   * 
+   * Valors de substitució: // {0} => custodyID // {1} => URLEncode(custodyID) // {2} =>
+   * Hash(custodyID)
+   */
+  public String getValidationFileUrl(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+    
+    String baseUrlEL = getProperty(getPropertyBase() + ABSTRACT_VALIDATION_FILE_URL_EXPRESSION_LANGUAGE);
+
+    String hashPassword = getProperty(getPropertyBase() + ABSTRACT_HASH_PASSWORD, "");
+
+    // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
+    String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
+
+    return getValidationUrlStatic(custodyID, parameters, null, baseUrlEL, hashAlgorithm,
+        hashPassword, log);
+  }
+  
+  
   
 
   @Override

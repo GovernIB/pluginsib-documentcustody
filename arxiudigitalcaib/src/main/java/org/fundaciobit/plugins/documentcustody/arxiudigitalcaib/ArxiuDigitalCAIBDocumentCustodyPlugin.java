@@ -727,6 +727,15 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     return getValidationUrlCommon(custodyID, parameters, property, prefix);
   }
   
+  @Override
+  public String getValidationFileUrl(String custodyID, Map<String, Object> parameters)
+      throws CustodyException {
+    final String property = "validation_file_url_EL";
+    final String prefix = "";
+    
+    return getValidationUrlCommon(custodyID, parameters, property, prefix);
+  }
+  
 
   @Override
   public String getSpecialValue(String custodyID, Map<String, Object> custodyParameters)

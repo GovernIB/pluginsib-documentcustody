@@ -60,6 +60,16 @@ public interface IDocumentCustodyPlugin extends IPlugin {
    */
   String getEniFileUrl(String custodyID, Map<String, Object> parameters)
       throws CustodyException;
+  
+  /**
+   * 
+   * @param custodyID
+   * @param parameters
+   * @return
+   * @throws CustodyException
+   */
+  String getValidationFileUrl(String custodyID, Map<String, Object> parameters)
+      throws CustodyException;
 
   /**
    * 
