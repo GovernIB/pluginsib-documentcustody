@@ -650,8 +650,12 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
       throws CustodyException {
 
     String csvValidatioWebEL = getProperty(getPropertyBase() + "csv_validation_web_EL");
-
-    return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvValidatioWebEL, parameters);
+    
+    if (csvValidatioWebEL == null || csvValidatioWebEL.trim()) {
+      XXX
+    } else {
+      return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvValidatioWebEL, parameters);
+    }
   }
 
   @Override
@@ -660,7 +664,12 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
 
     String csvGenerationDefinitionEL = getProperty(getPropertyBase()
         + "csv_generation_definition");
-    return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvGenerationDefinitionEL, parameters);
+    
+    if (csvGenerationDefinitionEL == null || csvGenerationDefinitionEL.trim().length() == 0) {
+      return null;
+    } else {
+      return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvGenerationDefinitionEL, parameters);
+    }
   }
   
   
