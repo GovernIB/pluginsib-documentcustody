@@ -425,8 +425,10 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
 
     // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
     String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
+    
+    String csv = getCsv(custodyID, parameters);
 
-    return getValidationUrlStatic(custodyID, parameters, baseUrl, baseUrlEL, hashAlgorithm,
+    return getValidationUrlStatic(custodyID, csv, parameters, baseUrl, baseUrlEL, hashAlgorithm,
         hashPassword, "validationUrl_", log);
 
   }
@@ -451,7 +453,9 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
     // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
     String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
 
-    return getValidationUrlStatic(custodyID, parameters, null, baseUrlEL, hashAlgorithm,
+    String csv = getCsv(custodyID, parameters);
+    
+    return getValidationUrlStatic(custodyID, csv, parameters, null, baseUrlEL, hashAlgorithm,
         hashPassword, log);
 
   }
@@ -475,8 +479,10 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
 
     // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
     String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
+    
+    String csv = getCsv(custodyID, parameters);
 
-    return getValidationUrlStatic(custodyID, parameters, null, baseUrlEL, hashAlgorithm,
+    return getValidationUrlStatic(custodyID, csv, parameters, null, baseUrlEL, hashAlgorithm,
         hashPassword, log);
 
   }
@@ -497,8 +503,10 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
 
     // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
     String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
+    
+    String csv = getCsv(custodyID, parameters);
 
-    return getValidationUrlStatic(custodyID, parameters, null, baseUrlEL, hashAlgorithm,
+    return getValidationUrlStatic(custodyID, csv, parameters, null, baseUrlEL, hashAlgorithm,
         hashPassword, log);
   }
   
@@ -520,7 +528,7 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
     // Valid values MD2, MD5, SHA,SHA-256,SHA-384,SHA-512
     String hashAlgorithm = getProperty(getPropertyBase() + ABSTRACT_HASH_ALGORITHM, "MD5");
 
-    return getValidationUrlStatic(custodyID, parameters, null, csvEL, hashAlgorithm,
+    return getValidationUrlStatic(custodyID, null,  parameters, null, csvEL, hashAlgorithm,
         hashPassword, log);
 
   }
@@ -552,17 +560,17 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
   }
   
   
-  public static String getValidationUrlStatic(String custodyID,
+  public static String getValidationUrlStatic(String custodyID, String csv,
       Map<String, Object> parameters, String baseUrl, String baseUrlEL, String hashAlgorithm,
       String hashPassword, Logger log) throws CustodyException {
 
-    return getValidationUrlStatic(custodyID, parameters, baseUrl, baseUrlEL, hashAlgorithm,
+    return getValidationUrlStatic(custodyID, csv, parameters, baseUrl, baseUrlEL, hashAlgorithm,
         hashPassword, "", log);
 
   }
   
 
-  public static String getValidationUrlStatic(String custodyID,
+  public static String getValidationUrlStatic(String custodyID, String csv,
       Map<String, Object> parameters, String baseUrl, String baseUrlEL, String hashAlgorithm,
       String hashPassword,  String prefix, Logger log) throws CustodyException {
     // {0} => custodyID
@@ -590,6 +598,9 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
       parameters2.put(prefix + "custodyID", custodyID);
       parameters2.put(prefix + "custodyID_URLEncode", urlEncoded);
       parameters2.put(prefix + "custodyID_Hash", hash);
+      if (csv != null) {
+        parameters2.put(prefix + "csv", csv);
+      }
 
       if (parameters != null) {
         parameters2.putAll(parameters);

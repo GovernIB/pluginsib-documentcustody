@@ -651,8 +651,8 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
 
     String csvValidatioWebEL = getProperty(getPropertyBase() + "csv_validation_web_EL");
     
-    if (csvValidatioWebEL == null || csvValidatioWebEL.trim()) {
-      XXX
+    if (csvValidatioWebEL == null || csvValidatioWebEL.trim().length() == 0) {
+      return null;
     } else {
       return AbstractDocumentCustodyPlugin.processExpressionLanguage(csvValidatioWebEL, parameters);
     }
@@ -705,14 +705,14 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     String hashAlgorithm = getProperty(getPropertyBase()
         + AbstractDocumentCustodyPlugin.ABSTRACT_HASH_ALGORITHM, "MD5");
 
-    Map<String, Object> custodyParametersExtended = new HashMap<String, Object>();
+//    Map<String, Object> custodyParametersExtended = new HashMap<String, Object>();
+//
+//    // Recuperam el CSV
+//    custodyParametersExtended.put("csv", );
+//    custodyParametersExtended.putAll(parameters);
 
-    // Recuperam el CSV
-    custodyParametersExtended.put("csv", getCsv(custodyID, parameters));
-    custodyParametersExtended.putAll(parameters);
-
-    return AbstractDocumentCustodyPlugin.getValidationUrlStatic(custodyID,
-        custodyParametersExtended, baseUrl, baseUrlEL,
+    return AbstractDocumentCustodyPlugin.getValidationUrlStatic(custodyID, getCsv(custodyID, parameters),
+        parameters, baseUrl, baseUrlEL,
         hashAlgorithm, hashPassword, prefix , log);
   }
   
