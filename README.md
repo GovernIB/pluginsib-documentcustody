@@ -13,6 +13,8 @@ Custòdia de Documents de sistema de fitxers, alfresco (i versió especial per l
 
 ***Documentació***
 
+[Documentació de branca](../../tree/pluginsib-documentcustody-2.0#documentaci%C3%B3)
+
 ***Enllaços***
 
 Plugin procedent de [pluginsib-1.0/plugins-documentcustody](https://github.com/GovernIB/pluginsib/tree/pluginsib-1.0/plugins-documentcustody).  
