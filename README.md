@@ -1,6 +1,11 @@
 # ![Logo](https://github.com/GovernIB/maven/raw/binaris/pluginsib/projectinfo_Attachments/icon.jpg) pluginsib-documentcustody-2.0
 *Eina de custodia de arxius*
 
+#### ***Documentació***
+
+Directori | Descripció | Documentació
+------------ | ------------- | -------------
+------------ | ------------- | -------------
 
 ***Implementacions***
 
