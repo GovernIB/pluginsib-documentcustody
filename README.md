@@ -6,7 +6,7 @@
 
 Directori | Descripció | Documentació
 ------------ | ------------- | -------------
-alfresco | -- | -- 
-alfresco-registre-apb | -- | --
-arxiudigital | -- | --
+alfresco | Custodia d'arxius d'alfresco | -- 
+alfresco-registre-apb | Custodia d'arxius d'alfresco especific per APB | --
+arxiudigital | Custodia d'arxius especific per arxiusdigital (CAIB) | --
 filesystem | -- | --
