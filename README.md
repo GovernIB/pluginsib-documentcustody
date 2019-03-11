@@ -9,4 +9,4 @@ Directori | Descripció | Documentació
 alfresco | Custodia d'arxius d'alfresco | -- 
 alfresco-registre-apb | Custodia d'arxius d'alfresco especific per APB | --
 arxiudigital | Custodia d'arxius especific per arxiusdigital (CAIB) | --
-filesystem | -- | --
+filesystem | Sistema de fitxers de prova | --
