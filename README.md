@@ -11,6 +11,7 @@ Directori | Descripció | Documentació
 
 Directori | Descripció | Documentació
 ------------ | ------------- | -------------
+api | API de documentcustody | --
 alfresco | Custodia d'arxius d'alfresco | -- 
 alfresco-registre-apb | Custodia d'arxius d'alfresco especific per APB | --
 arxiudigital | Custodia d'arxius especific per arxiusdigital (CAIB) | --
