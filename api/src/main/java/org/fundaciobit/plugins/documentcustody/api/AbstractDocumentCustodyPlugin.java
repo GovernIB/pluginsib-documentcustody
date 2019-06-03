@@ -1244,13 +1244,13 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
   public List<Metadata> deleteMetadata(String custodyID, String[] keys)
       throws CustodyException {
     // TODO OPTIMITZAR
-    ArrayList<Metadata> borrades = new ArrayList<Metadata>();
+    ArrayList<Metadata> esborrades = new ArrayList<Metadata>();
     if (keys != null && keys.length != 0) {
       for (int i = 0; i < keys.length; i++) {
-        borrades.addAll(deleteMetadata(custodyID, keys[i]));
+        esborrades.addAll(deleteMetadata(custodyID, keys[i]));
       }
     }
-    return borrades;
+    return esborrades;
   }
 
   @Override
