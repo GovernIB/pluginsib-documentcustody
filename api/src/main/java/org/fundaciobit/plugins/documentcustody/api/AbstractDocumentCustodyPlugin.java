@@ -1185,38 +1185,39 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
       NotSupportedCustodyException, MetadataFormatException {
 
     if (metadata != null) {
-      Metadata.checkMetadata(metadata);
-      Map<String, List<Metadata>> metas = readMetadataInfo(custodyID);
-      List<Metadata> list = metas.get(metadata.getKey());
-      if (list == null) {
-        list = new ArrayList<Metadata>();
-        metas.put(metadata.getKey(), list);
-      }
-      list.add(metadata);
-      // writeMetadataInfo(custodyID, metas, custodyParameters);
-      final String path = getCustodyMetadataInfoName(custodyID, custodyParameters); //
-      writeObject(custodyID, path, metas);
+      addMetadata(custodyID, new Metadata[] { metadata }, custodyParameters);
     }
 
   }
+
 
   @Override
-  public void addMetadata(String custodyID, Metadata[] metadata,
+  public void addMetadata(String custodyID, Metadata[] metadatas,
       Map<String, Object> custodyParameters) throws CustodyException,
       NotSupportedCustodyException, MetadataFormatException {
-    if (metadata != null) {
-      // TODO Optimitzar
-      for (int i = 0; i < metadata.length; i++) {
-        if (metadata[i] != null) {
-          Metadata.checkMetadata(metadata[i]);
+    if (metadatas != null && metadatas.length != 0) {
+
+      Map<String, List<Metadata>> metas = readMetadataInfo(custodyID);
+
+      for (Metadata metadata : metadatas) {
+        Metadata.checkMetadata(metadata);
+
+        List<Metadata> list = metas.get(metadata.getKey());
+        if (list == null) {
+          list = new ArrayList<Metadata>();
+          metas.put(metadata.getKey(), list);
         }
-        ;
+        list.add(metadata);
+
       }
-      for (int i = 0; i < metadata.length; i++) {
-        addMetadata(custodyID, metadata[i], custodyParameters);
-      }
+
+      final String path = getCustodyMetadataInfoName(custodyID, custodyParameters); //
+      writeObject(custodyID, path, metas);
+
     }
+
   }
+
 
   @Override
   public void updateMetadata(String custodyID, Metadata metadata,
