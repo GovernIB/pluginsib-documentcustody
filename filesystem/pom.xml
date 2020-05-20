@@ -3,27 +3,27 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.fundaciobit.pluginsib.documentcustody</groupId>
   <artifactId>pluginsib-documentcustody-filesystem</artifactId>
-  <version>4.0.0</version>
+  <version>4.0.1</version>
   <packaging>jar</packaging>
   <name>PluginsIB - Document Custody - FileSystem</name>
   <parent>
     <groupId>org.fundaciobit.pluginsib.documentcustody</groupId>
     <artifactId>pluginsib-documentcustody</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
   </parent>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
       <groupId>org.fundaciobit.pluginsib.documentcustody</groupId>
       <artifactId>pluginsib-documentcustody-api</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <!-- reuse src/test/java code from plugin-documentcustody-api  -->
       <groupId>org.fundaciobit.pluginsib.documentcustody</groupId>
       <artifactId>pluginsib-documentcustody-api</artifactId>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
       <scope>test</scope>
       <classifier>tests</classifier>
     </dependency>

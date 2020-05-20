@@ -232,7 +232,7 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
   // ---------------------------------------------------------------------
 
   @Override
-  public synchronized String reserveCustodyID(Map<String, Object> custodyParameters)
+  public String reserveCustodyID(Map<String, Object> custodyParameters)
       throws CustodyException {
 
     final String custodyID;
@@ -303,7 +303,7 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
     return custodyID;
   }
 
-  protected String generateUniqueCustodyID(Map<String, Object> custodyParameters)
+  protected synchronized String generateUniqueCustodyID(Map<String, Object> custodyParameters)
       throws CustodyException {
     // NOTA: S'afegiex nanoTime per quan hi ha un canvi d'hora
     String id = String.valueOf(System.currentTimeMillis() + "" + System.nanoTime());
