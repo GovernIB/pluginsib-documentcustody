@@ -1,15 +1,20 @@
-/alfresco/target
-/alfresco-registre-apb/target
-/api/.gitignore
-/api/.project
-/api/.settings
-/api/.classpath
+# Excloure del repositori
+# Directoris de resultat del Maven
+target/
+# Fitxers de projecte de Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+# Fitxers de projecte de IntelliJ IDEA
+*.iml
+.idea/
+# Fitxers de projecte de Netbeans
+nb-configuration.xml
+#
+# Arxius ignorats preexistents.
 /arxiudigitalcaib/sample.xml
 /arxiudigitalcaib/test.log
-/arxiudigitalcaib/.settings
-/arxiudigitalcaib/.classpath
-/arxiudigitalcaib/.gitignore
-/arxiudigitalcaib/.project
 /arxiudigitalcaib/2018_01_22_XAdES_Detached_sample_xml.xml
 /arxiudigitalcaib/CAIB-IMGD Tests Capa de Servicios CSGD-SGD v01r01.xml
 /arxiudigitalcaib/compil.bat
@@ -19,16 +24,4 @@
 /arxiudigitalcaib/justificant.pdf
 /arxiudigitalcaib/plugin.properties
 /arxiudigitalcaib/rest.txt
-/filesystem/.settings
-/filesystem/.classpath
-/filesystem/.gitignore
-/filesystem/.project
-/alfresco/.classpath
-/alfresco/.project
-/alfresco/.settings
-/alfresco-registre-apb/.classpath
-/alfresco-registre-apb/.project
-/alfresco-registre-apb/.settings/org.eclipse.core.resources.prefs
-/alfresco-registre-apb/.settings/org.eclipse.jdt.core.prefs
-/alfresco-registre-apb/.settings/org.eclipse.m2e.core.prefs
 /arxiudigitalcaib/src/test/java/org/fundaciobit/plugins/documentcustody/arxiudigitalcaib/test/BorrarTests.java
