@@ -27,7 +27,6 @@ import org.fundaciobit.pluginsib.core.utils.Base64;
 import org.fundaciobit.pluginsib.core.utils.Metadata;
 import org.fundaciobit.pluginsib.core.utils.MetadataConstants;
 import org.fundaciobit.pluginsib.core.utils.MetadataFormatException;
-import org.fundaciobit.pluginsib.core.utils.XTrustProvider;
 
 import es.caib.arxiudigital.apirest.ApiArchivoDigital;
 import es.caib.arxiudigital.apirest.CSGD.entidades.resultados.CreateDraftDocumentResult;
@@ -87,6 +86,8 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
 
   public static final String ARXIUDIGITALCAIB_PROPERTY_BASE = DOCUMENTCUSTODY_BASE_PROPERTY
       + "arxiudigitalcaib.";
+  public static final String IGNORE_SERVER_CERTIFICATE = ARXIUDIGITALCAIB_PROPERTY_BASE
+          + "connexio.ignore_server_certificates";
 
   public static final Map<String, TiposFirma> TIPOFIRMA_SIMPLE = new HashMap<String, TiposFirma>();
 
@@ -104,7 +105,7 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
 
     TIPOFIRMA_SIMPLE.put(SignatureCustody.PADES_SIGNATURE, TiposFirma.PADES);
 
-    /**
+    /*
      * true if signature contains original document (attached). false if
      * signature does not contain original document (dettached). null can not
      * obtain this information or is not necessary
@@ -372,8 +373,7 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
   }
 
   public boolean isPropertyIgnoreServerCeriticates() throws Exception {
-    String ignoreStr = getProperty(ARXIUDIGITALCAIB_PROPERTY_BASE
-        + "connexio.ignore_server_certificates");
+    String ignoreStr = getProperty(IGNORE_SERVER_CERTIFICATE);
     if (ignoreStr == null || ignoreStr.trim().length() == 0) {
       return false;
     } else {
@@ -761,7 +761,7 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
       custodyParametersExtended.putAll(custodyParameters);
 
       return AbstractDocumentCustodyPlugin.processExpressionLanguage(specialValue,
-          custodyParameters);
+          custodyParametersExtended);
     }
   }
 
@@ -2341,10 +2341,10 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
             getPropertyNomProcedimentEL(), custodyParameters));
 
         if (isPropertyIgnoreServerCeriticates()) {
-          XTrustProvider.install();
+          throw new UnsupportedOperationException("La propietat [" + IGNORE_SERVER_CERTIFICATE + "] ja no està soportada." +
+                  "Si necessita connectar a un servidor SSL amb un certificat no reconegut per la JVM, " +
+                  "incorpori'l al trustStore.");
         }
-
-        // String urlBase = DatosConexion.ENDPOINT_DEV;
 
         ApiArchivoDigital apiArxiu = new ApiArchivoDigital(getPropertyURL(), cabecera);
 
@@ -2398,9 +2398,8 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
   /**
    * 
    * @param custodyParameters
-   * @param ignoreErrors
    * @param prefix
-   *          Por valer expedient, document, firma
+   *          Pot valer expedient, document, firma
    * @return
    * @throws CustodyException
    */
@@ -2470,8 +2469,9 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
       
       int index = str.indexOf(NO_MODIFY_TEXT_URL_ENCODED);
       
-      if (index == -1) {
-           str = str.substring(index);      }
+      if (index != -1) {
+           str = str.substring(index);
+      }
       
       String strOK = URLDecoder.decode(str, "UTF-8");
       prop.load(new StringReader(strOK));
@@ -2671,39 +2671,12 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     return metadadesSenseEni;
   }
 
-  /**
-   * 
-   * @author anadal
-   *
-   */
-  public class FilesInfo {
-
-    public final Nodo nodoDocumentElectronic;
-
-    public final Nodo nodoCSV;
-
-    /**
-     * @param nodoDocumentElectronic
-     * @param nodoCSV
-     */
-    public FilesInfo(Nodo nodoDocumentElectronic, Nodo nodoCSV) {
-      super();
-      this.nodoDocumentElectronic = nodoDocumentElectronic;
-      this.nodoCSV = nodoCSV;
-    }
-
-  }
-
-  public class FullInfoDocumentElectronic {
+  public static class FullInfoDocumentElectronic {
 
     public final Properties infoAndMetas;
 
     public final Documento documento;
 
-    /**
-     * @param infoAndMetas
-     * @param documento
-     */
     public FullInfoDocumentElectronic(Properties infoAndMetas, Documento documento) {
       super();
       this.infoAndMetas = infoAndMetas;
@@ -2711,67 +2684,5 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
     }
 
   }
-
-
-  /**
-   * 
-   * @author anadal
-   *
-   */
-  /*
-   * public abstract class MetadataAction {
-   * 
-   * protected final ApiArchivoDigital apiArxiu;
-   * 
-   * protected final String custodyID;
-   * 
-   * public Object outputParameter = null;
-   * 
-   * 
-   * public MetadataAction(ApiArchivoDigital apiArxiu, String custodyID) {
-   * super(); this.apiArxiu = apiArxiu; this.custodyID = custodyID; }
-   * 
-   * public Properties doAction() throws CustodyException {
-   * 
-   * try { Map<String, Nodo> nodosByName = getNodosByCustodyID(apiArxiu,
-   * custodyID); Nodo nodoMetas = nodosByName.get(NOM_METADADES); Properties
-   * metadades = readPropertiesFromSimpleDoc(apiArxiu, nodoMetas.getId());
-   * 
-   * // Afegir metadades ENI i GDIB Nodo nodoDocElec =
-   * nodosByName.get(NOM_DOCUMENT_ELECTRONIC); Map<String, Object> metadataDocs
-   * = null; if (nodoDocElec != null) { Resultado<Documento> res =
-   * apiArxiu.obtenerDocumento(nodoDocElec.getId(), false); metadataDocs =
-   * res.getElementoDevuelto().getMetadataCollection();
-   * 
-   * for (String key : metadataDocs.keySet()) { Object value =
-   * metadataDocs.get(key); metadades.setProperty(key, String.valueOf(value)); }
-   * 
-   * }
-   * 
-   * // metadatas.setProperty(metadata.getKey(), metadata.getValue()); if
-   * (modificarMetadades(metadades)) {
-   * 
-   * Properties metadadesSenseEni = getMetadadesSenseEni(metadades,
-   * metadataDocs);
-   * 
-   * // TODO Falta actualitzar metadades del document
-   * 
-   * // Actualitzam metadades createSimpleDoc(apiArxiu, NOM_METADADES,
-   * metadadesSenseEni, custodyID, nodoMetas.getId());
-   * 
-   * }
-   * 
-   * return metadades;
-   * 
-   * } catch (CustodyException ce) { throw ce; } catch (Exception e) { throw new
-   * CustodyException("Error desconegut: " + e.getMessage(), e); } }
-   * 
-   * 
-   * 
-   * public abstract boolean modificarMetadades(Properties metadades) throws
-   * Exception;
-   * 
-   * }
-   */
 
 }
