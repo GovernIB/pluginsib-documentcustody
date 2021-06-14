@@ -207,6 +207,54 @@ public class TestFileSystemCustody extends TestDocumentCustody {
         FileSystemDocumentCustodyPlugin.class, packageBase, fsProperties);
     return documentCustodyPlugin;
   }
+  
+  
+  /**
+   * 
+   * @throws CustodyException
+   */
+  public void testUUID() throws CustodyException {
+    
+    
+    final Map<String, Object> parameters= new HashMap<String, Object>();
+    
+    // 0 => UUID || 1 => syncronized
+    for (int t = 0; t < 2; t++) {
+      
+      
+      Properties specificProperties = new Properties();
+
+      
+      specificProperties.setProperty(packageBase
+          + FileSystemDocumentCustodyPlugin.FILESYSTEM_PROPERTY_USERANDOMUUID,
+          (t==0?"true":"false"));
+      
+      
+      IDocumentCustodyPlugin documentCustodyPlugin = instantiateDocumentCustodyPlugin(specificProperties);
+      
+
+      FileSystemDocumentCustodyPlugin fsdcp = (FileSystemDocumentCustodyPlugin)documentCustodyPlugin;
+      
+      long start = System.currentTimeMillis();
+      for (int i = 0; i < 100; i++) {
+        System.out.println(fsdcp.generateUniqueCustodyID(parameters));
+      }
+      
+      System.out.println();
+      System.out.println();
+      if (t == 0) {
+        System.out.print("UUID: ");
+      } else {
+        System.out.print("Syncronized:");
+      }
+      System.out.println((System.currentTimeMillis() - start) + "ms");
+
+    }
+
+    
+  }
+  
+  
 
   public static void main(String[] args) {
     try {
@@ -219,9 +267,11 @@ public class TestFileSystemCustody extends TestDocumentCustody {
 
       //tester.testFull();
 
-      tester.testFolderFromCustodyParameters();
+      //tester.testFolderFromCustodyParameters();
 
       //tester.testRetro();
+      
+      tester.testUUID();
 
     } catch (Exception e) {
       e.printStackTrace();

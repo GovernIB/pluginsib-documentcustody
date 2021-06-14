@@ -4,9 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Map;
 import java.util.Properties;
+import java.util.UUID;
 
 import org.fundaciobit.plugins.documentcustody.api.AbstractDocumentCustodyPlugin;
+import org.fundaciobit.plugins.documentcustody.api.CustodyException;
 
 
 /**
@@ -21,6 +24,8 @@ public class FileSystemDocumentCustodyPlugin extends AbstractDocumentCustodyPlug
   public static final String FILESYSTEM_PROPERTY_BASE = DOCUMENTCUSTODY_BASE_PROPERTY + "filesystem.";
 
   public static final String FILESYSTEM_PROPERTY_BASEDIR = FILESYSTEM_PROPERTY_BASE + "basedir";
+  
+  public static final String FILESYSTEM_PROPERTY_USERANDOMUUID = FILESYSTEM_PROPERTY_BASE + "userandomuuid";
 
   /**
    * 
@@ -53,6 +58,20 @@ public class FileSystemDocumentCustodyPlugin extends AbstractDocumentCustodyPlug
   
   private String getBaseDir() throws Exception  {
     return getPropertyRequired(FILESYSTEM_PROPERTY_BASEDIR );
+  }
+  
+  
+  @Override
+  protected String generateUniqueCustodyID(Map<String, Object> custodyParameters)  throws CustodyException {
+    
+    boolean useRandomUUID = "true".equals(getProperty(FILESYSTEM_PROPERTY_USERANDOMUUID));
+    String id;
+    if (useRandomUUID) {
+      id = UUID.randomUUID().toString();
+    } else {
+      id = super.generateUniqueCustodyID(custodyParameters);
+    }
+    return id;
   }
 
 
