@@ -21,6 +21,7 @@ import org.fundaciobit.plugins.documentcustody.api.test.InfoExecutionTest;
 import org.fundaciobit.plugins.documentcustody.api.test.Registre;
 import org.fundaciobit.plugins.documentcustody.api.test.TestDocumentCustody;
 import org.fundaciobit.pluginsib.core.utils.PluginsManager;
+import org.junit.Test;
 
 /**
  *
@@ -50,32 +51,32 @@ public class TestAlfrescoBaseCustody extends TestDocumentCustody {
     // Ficar propietats ALFRESCO
     /*
      * TODO XYZ
-     * 
+     *
      * final String propertyBase = packageBase +
      * AlfrescoDocumentCustodyPlugin.ALFRESCO_PROPERTY_BASE;
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * alfrescoProperties.setProperty(propertyBase + "url",
      * "http://localhost:9080/alfresco/api/-default-/public/cmis/versions/1.0/atom"
      * );
-     * 
-     * 
+     *
+     *
      * //workspace://SpacesStore/b886bad2-998d-4674-a120-1fcc2f1f533c
-     * 
+     *
      * alfrescoProperties.setProperty(propertyBase + "repository",
      * "b886bad2-998d-4674-a120-1fcc2f1f533c"); //"USER_HOMES/anadal/test/");
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * alfrescoProperties.setProperty(propertyBase + "basepath","/test");
-     * 
+     *
      * alfrescoProperties.setProperty(propertyBase + "site","ODES");
      * alfrescoProperties.setProperty(propertyBase + "access.user", "anadal");
-     * 
-     * 
+     *
+     *
      * alfrescoProperties.setProperty(propertyBase + "access.pass", "anadal");
-     * 
+     *
      * // WS ATOM alfrescoProperties.setProperty(propertyBase + "access.method",
      * "ATOM");
      */
@@ -92,7 +93,7 @@ public class TestAlfrescoBaseCustody extends TestDocumentCustody {
     return propertyBase;
   }
 
-  @org.junit.Test
+  @Test
   public void testRetro() throws Exception {
 
     final String custodyID = "606443123400344";
@@ -164,7 +165,7 @@ public class TestAlfrescoBaseCustody extends TestDocumentCustody {
 
   }
 
-  @org.junit.Test
+  @Test
   public void testFull() throws Exception {
 
     // IDocumentCustodyPlugin documentCustodyPlugin = initialize(null);
@@ -183,7 +184,7 @@ public class TestAlfrescoBaseCustody extends TestDocumentCustody {
 
   }
 
-  @org.junit.Test
+  @Test
   public void testFolderFromCustodyParameters() throws Exception {
 
     File baseDir = new File("./testReposWithFolder");
@@ -200,6 +201,7 @@ public class TestAlfrescoBaseCustody extends TestDocumentCustody {
 
   }
 
+  @Test
   public void testSimpleDoc() throws Exception {
 
     Properties specificProperties = new Properties();
@@ -261,7 +263,7 @@ public class TestAlfrescoBaseCustody extends TestDocumentCustody {
 
   }
 
-  @org.junit.Test
+  @Test
   public void testAutomaticMetadatas() throws Exception {
 
     Properties specificProperties = new Properties();
@@ -274,48 +276,5 @@ public class TestAlfrescoBaseCustody extends TestDocumentCustody {
 
   }
 
-  public static void main(String[] args) {
-    try {
-
-      System.out.println(AlfrescoBaseDocumentCustodyPlugin.class.getCanonicalName());
-
-      // org.apache.log4j.LogManager.getRootLogger().setLevel(org.apache.log4j.Level.DEBUG);
-
-      TestAlfrescoBaseCustody tester = new TestAlfrescoBaseCustody();
-
-      
-      tester.testFull();
-
-      tester.testRetro();
-
-      tester.testFolderFromCustodyParameters();
-      
-
-      tester.testSimpleDoc();
-
-      tester.testAutomaticMetadatas();
-
-      /*
-       * 
-       * TestAlfrescoBaseCustody test = new TestAlfrescoBaseCustody(); boolean
-       * deleteOnFinish = false; test.testDocumentCustody(documentCustodyPlugin,
-       * deleteOnFinish);
-       * 
-       * 
-       * // Que passa quan intentam esborrar String custodyID =
-       * "13221341235415"; // No existeix
-       * documentCustodyPlugin.deleteDocument(custodyID);
-       * 
-       * documentCustodyPlugin.deleteCustody(custodyID);
-       * documentCustodyPlugin.getSignatureInfoOnly(custodyID);
-       */
-
-      System.out.println(" --- FINAL  ---");
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-  }
 
 }
