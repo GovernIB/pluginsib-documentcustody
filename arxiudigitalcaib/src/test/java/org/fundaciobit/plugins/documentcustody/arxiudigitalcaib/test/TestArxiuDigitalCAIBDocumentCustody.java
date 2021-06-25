@@ -13,9 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Scanner;
-
-import junit.framework.Assert;
 
 import org.fundaciobit.plugins.documentcustody.api.AnnexCustody;
 import org.fundaciobit.plugins.documentcustody.api.CustodyException;
@@ -46,6 +43,8 @@ import es.caib.arxiudigital.apirest.facade.pojos.Documento;
 import es.caib.arxiudigital.apirest.facade.pojos.Expediente;
 import es.caib.arxiudigital.apirest.facade.resultados.Resultado;
 import es.caib.arxiudigital.apirest.facade.resultados.ResultadoSimple;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * 
@@ -55,40 +54,6 @@ import es.caib.arxiudigital.apirest.facade.resultados.ResultadoSimple;
 public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
 
   SimpleDateFormat SDF = new SimpleDateFormat("MMdd");
-  
-  public static Scanner scan=new Scanner(System.in);
-
-  public static void waitForEnter() {
-       System.out.print("Press any key to continue . . ." );
-       scan.nextLine();
-  }
-
-  public static void main(String[] args) {
-    try {
-
-      System.out.println(ArxiuDigitalCAIBDocumentCustodyPlugin.class.getCanonicalName());
-
-      TestArxiuDigitalCAIBDocumentCustody tester = new TestArxiuDigitalCAIBDocumentCustody();
-      
-      //tester.testInternalMetadata();
-
-      tester.test3Combinacions();
-     
-      //tester.testSimpleDoc();
-
-      // tester.testFull();
-
-      //tester.testMetadades();
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-  }
-  
-  
- 
-  
 
   protected void compareDocument(String titol, AnnexCustody docSet, AnnexCustody docGet,
       boolean compareData) {
@@ -97,8 +62,8 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
       return; // OK
     }
 
-    if ((docSet == null && docGet != null) || (docSet != null && docGet == null)) {
-      Assert.assertNull(titol + ".- Algun dels dos valors val null i l'altre no: [SET = "
+    if (docSet == null || docGet == null) {
+      Assert.fail(titol + ".- Algun dels dos valors val null i l'altre no: [SET = "
           + docSet + "][GET = " + docGet + "]");
     }
 
@@ -568,7 +533,6 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
     return registro;
   }
 
-  @org.junit.Test
   public void testFull() throws Exception {
 
     Properties specificProperties = new Properties();
@@ -697,7 +661,7 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
   }
   
   
-  
+  @Test
   public void testInternalMetadata() throws Exception {
     
     Properties specificProperties = new Properties();
@@ -814,11 +778,9 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
   }
   
   
-  
+  @Test
   public void test3Combinacions()
       throws Exception {
-    
-    final boolean waitInput = true;
     
     Properties specificProperties = new Properties();
     IDocumentCustodyPlugin documentCustodyPlugin = instantiateDocumentCustodyPlugin(specificProperties);
@@ -843,11 +805,8 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
     
     System.out.println(" Reserva Feta ");
     
-    if (waitInput) {
-      waitForEnter();
-    }
-    
-    
+    sleep();
+
     // compbinacions doc, sign i doc+sign
 
     // ============ ONLY DOC
@@ -877,11 +836,7 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
     }
     
     
-    if (waitInput) {
-      waitForEnter();
-    } else {
-      sleep();
-    }
+    sleep();
     
     
     // ============  ONLY SIGN
@@ -922,11 +877,7 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
       // plugin.deleteCustody(custodyID);
     }
     
-    if (waitInput) {
-      waitForEnter();
-    } else {
-      sleep();
-    }
+    sleep();
     
     // ============  FILE & SIGN
     {
@@ -964,9 +915,9 @@ public class TestArxiuDigitalCAIBDocumentCustody extends TestDocumentCustody {
 
       checkSign(signatureCustody, dataSign, sign1, sign2);
   
-      waitForEnter();
+      sleep();
       // XYZ ZZZ      
-      //plugin.deleteCustody(custodyID);
+      plugin.deleteCustody(custodyID);
     }
     
     
