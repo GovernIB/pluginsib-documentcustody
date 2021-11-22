@@ -1899,7 +1899,7 @@ public class ArxiuDigitalCAIBDocumentCustodyPlugin extends AbstractPluginPropert
   public Metadata getOnlyOneMetadata(String custodyID, String key) throws CustodyException,
       NotSupportedCustodyException {
     List<Metadata> list = getMetadata(custodyID, key);
-    if (list.size() != 0) {
+    if (list != null && list.size() != 0) {
       return list.get(0);
     } else {
       return null;
