@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_161" class="java.beans.XMLDecoder">
- <object class="org.fundaciobit.plugins.documentcustody.api.AnnexCustody">
+<java version="11.0.11" class="java.beans.XMLDecoder">
+ <object class="org.fundaciobit.pluginsib.documentcustody.api.AnnexCustody">
   <void property="length">
    <long>18</long>
   </void>

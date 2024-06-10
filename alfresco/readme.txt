@@ -1,11 +1,11 @@
 
-Algunes dependències d'aquest Plugin interfereixen amb WS, per això s'han d'excloure.
+Algunes dependÃ ncies d'aquest Plugin interfereixen amb WS, per aixÃ² s'han d'excloure.
 
 
         <dependency>
             <groupId>org.fundaciobit.plugins</groupId>
             <artifactId>plugin-documentcustody-alfresco</artifactId>
-            <version>4.0.0</version>
+            <version>5.0.0-SNAPSHOT</version>
             <exclusions>
               <exclusion>
                 <groupId>org.slf4j</groupId>

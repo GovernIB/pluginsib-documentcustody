@@ -32,10 +32,6 @@ es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.connexio.url=https://af
 es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.connexio.login.username=USERNAME
 es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.connexio.login.password=PASSWORD
 
-
-
-es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.connexio.ignore_server_certificates=true
-
 es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.connexio.codi_aplicacio=Tests
 
 es.caib.exemple.plugins.documentcustody.arxiudigitalcaib.connexio.organitzacio=CAIB
