@@ -622,7 +622,7 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
 
             Configuration configuration;
 
-            configuration = new Configuration(Configuration.VERSION_2_3_23);
+            configuration = new Configuration(Configuration.VERSION_2_3_32);
             configuration.setDefaultEncoding("UTF-8");
             if (locale != null) {
                 configuration.setLocale(locale);
