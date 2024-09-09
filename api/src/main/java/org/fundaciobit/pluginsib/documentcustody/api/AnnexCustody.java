@@ -101,5 +101,9 @@ public class AnnexCustody {
     public void setLength(long length) {
         this.length = length;
     }
+    
+    @Deprecated
+    public void setDocumentType(String gignore) {
+    }
 
 }
