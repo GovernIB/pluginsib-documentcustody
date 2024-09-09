@@ -38,5 +38,10 @@ public class DocumentCustody extends AnnexCustody {
     public DocumentCustody(DocumentCustody dc) {
         super(dc);
     }
+    
+    
+    @Deprecated
+    public void setDocumentType(String gignore) {
+    }
 
 }
