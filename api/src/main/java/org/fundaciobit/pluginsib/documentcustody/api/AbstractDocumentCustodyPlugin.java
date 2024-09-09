@@ -1352,6 +1352,14 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
                     "class=\"org.fundaciobit.pluginsib.documentcustody.api.DocumentCustody\"");
             dataStr = dataStr.replace("class=\"org.fundaciobit.plugins.documentcustody.api.SignatureCustody\"",
                     "class=\"org.fundaciobit.pluginsib.documentcustody.api.SignatureCustody\"");
+            
+            // Canvi de Package de org.fundaciobit.pluginsib.core.utils a org.fundaciobit.pluginsib.core.v3.utils
+            dataStr = dataStr.replace("class=\"org.fundaciobit.pluginsib.core.utils.Metadata\"",
+                    "class=\"org.fundaciobit.pluginsib.core.v3.utils.Metadata\"");
+            dataStr = dataStr.replace("class=\"org.fundaciobit.pluginsib.core.utils.MetadataType\"",
+                    "class=\"org.fundaciobit.pluginsib.core.v3.utils.MetadataType\"");
+            
+            
 
             XMLDecoder decoder = new XMLDecoder(new ByteArrayInputStream(dataStr.getBytes("UTF8")));
             Object o = (Object) decoder.readObject();
