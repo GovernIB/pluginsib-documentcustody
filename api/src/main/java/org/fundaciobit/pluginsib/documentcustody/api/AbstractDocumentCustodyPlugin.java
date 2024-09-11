@@ -827,6 +827,8 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
     @Override
     public SignatureCustody getSignatureInfo(String custodyID) throws CustodyException {
 
+        log.info("XYZ ZZZ getSignatureInfo(" + custodyID + ")");
+
         if (custodyID == null) {
             return null;
         }
@@ -1272,6 +1274,7 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
         try {
 
             if (!existsFile(custodyID, docPath)) {
+                log.info("XYZ ZZZ getDocOrSign() => No EXIST FILE");
                 return null;
             }
 
@@ -1361,9 +1364,12 @@ public abstract class AbstractDocumentCustodyPlugin extends AbstractPluginProper
             // Canvi de Package de org.fundaciobit.pluginsib.core.utils a org.fundaciobit.pluginsib.core.v3.utils
             dataStr = dataStr.replace("class=\"org.fundaciobit.pluginsib.core.utils.Metadata\"",
                     "class=\"org.fundaciobit.pluginsib.core.v3.utils.Metadata\"");
+
             dataStr = dataStr.replace("class=\"org.fundaciobit.pluginsib.core.utils.MetadataType\"",
                     "class=\"org.fundaciobit.pluginsib.core.v3.utils.MetadataType\"");
 
+            dataStr = dataStr.replace("<class>org.fundaciobit.pluginsib.core.utils.MetadataType</class>",
+                    "<class>org.fundaciobit.pluginsib.core.v3.utils.MetadataType</class>");
 
             XMLDecoder decoder = new XMLDecoder(new ByteArrayInputStream(dataStr.getBytes("UTF8")));
             Object o = (Object) decoder.readObject();

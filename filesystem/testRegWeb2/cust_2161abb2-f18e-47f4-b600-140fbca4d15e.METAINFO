@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>anexo.validezDocumento</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>anexo.validezDocumento</string>
+      </void>
+      <void property="metadataType">
+       <object class="java.lang.Enum" id="MetadataType0" method="valueOf">
+        <class>org.fundaciobit.pluginsib.core.utils.MetadataType</class>
+        <string>STRING</string>
+       </object>
+      </void>
+      <void property="value">
+       <string>Còpia</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>eni:origen</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>eni:origen</string>
+      </void>
+      <void property="metadataType">
+       <object class="java.lang.Enum" method="valueOf">
+        <class>org.fundaciobit.pluginsib.core.utils.MetadataType</class>
+        <string>INTEGER</string>
+       </object>
+      </void>
+      <void property="value">
+       <string>0</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>anexo.titulo</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>anexo.titulo</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>iiii</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>anexo.origen</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>anexo.origen</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>Ciutadà</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>anexo.tipoDocumento</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>anexo.tipoDocumento</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>Formulari</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>oficina</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>oficina</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>O00006056 C. Salud - Oficina Principal</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>anexo.fechaCaptura</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>anexo.fechaCaptura</string>
+      </void>
+      <void property="metadataType">
+       <object class="java.lang.Enum" method="valueOf">
+        <class>org.fundaciobit.pluginsib.core.utils.MetadataType</class>
+        <string>DATE</string>
+       </object>
+      </void>
+      <void property="value">
+       <string>2024-08-08T11:51:45+02:00</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>eni:estado_elaboracion</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>eni:estado_elaboracion</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>EE99</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>anexo.formato</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>anexo.formato</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>application/pdf</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>eni:descripcion</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>eni:descripcion</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>iiii</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>eni:codigo_oficina_registro</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>eni:codigo_oficina_registro</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>O00006056</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>eni:fecha_inicio</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>eni:fecha_inicio</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string>2024-08-08T11:51:45+02:00</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>anexo.observaciones</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="org.fundaciobit.pluginsib.core.utils.Metadata">
+      <void property="key">
+       <string>anexo.observaciones</string>
+      </void>
+      <void property="metadataType">
+       <object idref="MetadataType0"/>
+      </void>
+      <void property="value">
+       <string></string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

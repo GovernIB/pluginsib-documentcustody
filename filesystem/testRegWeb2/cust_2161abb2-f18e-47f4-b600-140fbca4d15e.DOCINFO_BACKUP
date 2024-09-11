@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11" class="java.beans.XMLDecoder">
+ <object class="org.fundaciobit.plugins.documentcustody.api.DocumentCustody">
+  <void property="length">
+   <long>8694</long>
+  </void>
+  <void property="mime">
+   <string>application/pdf</string>
+  </void>
+  <void property="name">
+   <string>anexo_test.pdf</string>
+  </void>
+ </object>
+</java>

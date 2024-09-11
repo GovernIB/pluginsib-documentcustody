@@ -2,10 +2,13 @@ package org.fundaciobit.pluginsib.documentcustody.filesystem;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -15,6 +18,7 @@ import org.fundaciobit.pluginsib.documentcustody.api.CustodyException;
 import org.fundaciobit.pluginsib.documentcustody.api.IDocumentCustodyPlugin;
 import org.fundaciobit.pluginsib.documentcustody.api.test.TestDocumentCustody;
 import org.fundaciobit.pluginsib.core.v3.utils.FileUtils;
+import org.fundaciobit.pluginsib.core.v3.utils.Metadata;
 import org.fundaciobit.pluginsib.core.v3.utils.PluginsManager;
 import org.junit.Assert;
 
@@ -66,8 +70,16 @@ public class TestFileSystemCustody extends TestDocumentCustody {
 
         String[][] filesToReset = new String[][] { { "cust_624839770629068.DOCINFO", "0" },
                 { "cust_624839770629068.SIGNINFO", "1" }, { "cust_624839770629068_624839855282562.ANNEXINFO", "2" },
-                { "cust_624839770629068_624840362780564.ANNEXINFO", "2" } };
+                { "cust_624839770629068_624840362780564.ANNEXINFO", "2" }, { "cust_624839770629068.METAINFO", "3" } };
 
+        final int[] expectedSizes = new int[] { 12, 11, 18, 18, 1 };
+
+        internalTest(custodyID, baseDir, filesToReset, expectedSizes);
+
+    }
+
+    protected void internalTest(final String custodyID, File baseDir, String[][] filesToReset, int[] expectedSizes)
+            throws CustodyException, FileNotFoundException, IOException, Exception {
         // Check SIZE
         Properties specificProperties = new Properties();
 
@@ -85,6 +97,8 @@ public class TestFileSystemCustody extends TestDocumentCustody {
             File oldInfo = new File(baseDir, file);
             oldInfo.delete();
 
+            System.out.println(" Processant ... " + file);
+
             File originalInfo = new File(baseDir, file + "_BACKUP");
 
             OutputStream dest = new FileOutputStream(oldInfo);
@@ -93,23 +107,28 @@ public class TestFileSystemCustody extends TestDocumentCustody {
             // Check de tamany
             int tipus = Integer.parseInt(dades[1]);
             AnnexCustody doc;
-            int expectedSize;
+            long size;
             switch (tipus) {
 
                 case 0:
                     doc = documentCustodyPlugin.getDocumentInfoOnly(custodyID);
-                    expectedSize = 12;
+                    size = doc.getLength();
                 break;
 
                 case 1:
                     doc = documentCustodyPlugin.getSignatureInfoOnly(custodyID);
-                    expectedSize = 11;
+                    size = doc.getLength();
                 break;
 
                 case 2:
                     String annexID = file.substring(file.indexOf('_') + 1, file.lastIndexOf('.'));
                     doc = documentCustodyPlugin.getAnnexInfoOnly(custodyID, annexID);
-                    expectedSize = 18;
+                    size = doc.getLength();
+                break;
+
+                case 3:
+                    Map<String, List<Metadata>> map = documentCustodyPlugin.getAllMetadata(custodyID);
+                    size = map.size();
                 break;
 
                 default:
@@ -117,15 +136,14 @@ public class TestFileSystemCustody extends TestDocumentCustody {
 
             }
 
-            System.out.println(" Size = " + doc.getLength());
+            //System.out.println(" Size = " + size);
 
-            if (doc.getLength() != expectedSize) {
-                Assert.fail("El tamany del fitxer " + file + " no correspon amb l'esperat (" + doc.getLength() + " != "
-                        + expectedSize + ")");
+            if (size != expectedSizes[i]) {
+                Assert.fail("El tamany del fitxer " + file + " no correspon amb l'esperat (" + size + " != "
+                        + expectedSizes[i] + ")");
             }
 
         }
-
     }
 
     @org.junit.Test
@@ -239,6 +257,36 @@ public class TestFileSystemCustody extends TestDocumentCustody {
 
     }
 
+    public void testRegWeb1() throws Exception {
+
+        final String custodyID = "846d4293-5c24-4e1c-b613-01925f3ce59f";
+
+        File baseDir = new File("./testRegWeb1");
+
+        String[][] filesToReset = new String[][] { { "cust_846d4293-5c24-4e1c-b613-01925f3ce59f.SIGNINFO", "1" },
+                { "cust_846d4293-5c24-4e1c-b613-01925f3ce59f.METAINFO", "3" } };
+
+        int[] expectedSizes = new int[] { 63916, 13 };
+
+        internalTest(custodyID, baseDir, filesToReset, expectedSizes);
+
+    }
+
+    public void testRegWeb2() throws Exception {
+
+        final String custodyID = "2161abb2-f18e-47f4-b600-140fbca4d15e";
+
+        File baseDir = new File("./testRegWeb2");
+
+        String[][] filesToReset = new String[][] { { "cust_2161abb2-f18e-47f4-b600-140fbca4d15e.DOCINFO", "0" },
+                { "cust_2161abb2-f18e-47f4-b600-140fbca4d15e.METAINFO", "3" } };
+
+        int[] expectedSizes = new int[] { 8694, 13 };
+
+        internalTest(custodyID, baseDir, filesToReset, expectedSizes);
+
+    }
+
     public static void main(String[] args) {
         try {
 
@@ -252,9 +300,13 @@ public class TestFileSystemCustody extends TestDocumentCustody {
 
             //tester.testFolderFromCustodyParameters();
 
-            //tester.testRetro();
+            tester.testRetro();
 
-            tester.testUUID();
+            //tester.testUUID();
+
+            //tester.testRegWeb1();
+
+            //tester.testRegWeb2();
 
         } catch (Exception e) {
             e.printStackTrace();
